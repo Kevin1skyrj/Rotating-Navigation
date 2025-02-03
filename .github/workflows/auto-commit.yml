@@ -16,9 +16,11 @@ jobs:
         run: echo "Auto commit at $(date)" >> log.txt
 
       - name: Commit and push changes
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           git config --global user.name "Kevin1skyrj"
           git config --global user.email "rajatpndey257@gmail.com"
           git add log.txt
           git commit -m "Auto commit at $(date)" || echo "No changes to commit"
-          git push
+          git push https://x-access-token:${GH_TOKEN}@github.com/Kevin1skyrj/auto-commit-test.git
